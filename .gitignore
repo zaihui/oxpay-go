@@ -1,0 +1,10 @@
+.DS_Store
+.coverage
+*.rdb
+*.log*
+*sqlite*
+
+.dist/
+.idea/
+htmlcov/
+.vscode/
