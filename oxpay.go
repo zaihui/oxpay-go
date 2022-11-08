@@ -129,6 +129,7 @@ type BackendImplementation struct {
 
 // Call is the Backend.Call implementation for invoking Stripe APIs.
 func (s *BackendImplementation) Call(method, path, mcptid string, params ParamsContainer, v LastResponseSetter) error {
+	// todo 这里可能有个坑
 	return s.CallRaw(method, path, mcptid, params.GetParams(), v)
 }
 

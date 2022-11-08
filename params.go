@@ -9,8 +9,8 @@ import (
 //
 
 type Params struct {
-	Head Head `json:"header"`
-	Data any  `json:"data"`
+	Header Head `json:"header"`
+	Data   any  `json:"data"`
 }
 
 // Head is the request common comment.
