@@ -16,6 +16,8 @@ type Client struct {
 func New(params *oxpay.RefundParams) (*oxpay.Refund, error) {
 	return getC().New(params)
 }
+
+// New a refund, card refund not support PAYNOW and APMs,ewallet refund just support by some ewallet,e.g:wechat_pay
 func (c Client) New(params *oxpay.RefundParams) (*oxpay.Refund, error) {
 	refund := &oxpay.Refund{}
 	params.Params.Data = params

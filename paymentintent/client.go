@@ -26,16 +26,16 @@ func (c Client) getPath(relativePath string) string {
 
 // New creates a new payment just for card quick pay.
 func (c Client) New(params *oxpay.PaymentIntentParams) (*oxpay.PaymentIntent, error) {
-	paymentlink := &oxpay.PaymentIntent{}
+	paymentintent := &oxpay.PaymentIntent{}
 	params.Data = params
 	err := c.B.Call(
 		http.MethodPost,
 		c.getPath("/v5/sale"),
 		c.McpTID,
 		&params.Params,
-		paymentlink,
+		paymentintent,
 	)
-	return paymentlink, err
+	return paymentintent, err
 }
 func Get(id string, params *oxpay.PaymentIntentParams) (*oxpay.PaymentIntent, error) {
 	return getC().Get(id, params)
@@ -59,6 +59,8 @@ func (c Client) Get(id string, params *oxpay.PaymentIntentParams) (*oxpay.Paymen
 func Cancel(id string, params *oxpay.PaymentIntentParams) (*oxpay.PaymentIntent, error) {
 	return getC().Cancel(id, params)
 }
+
+// Cancel A void on eWallet transactions are dependent on the acquirer’s capabilities and not all eWalletsare able to be voided
 func (c Client) Cancel(id string, params *oxpay.PaymentIntentParams) (*oxpay.PaymentIntent, error) {
 	paymentintent := &oxpay.PaymentIntent{}
 	params.TransactionId = id

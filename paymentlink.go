@@ -19,4 +19,5 @@ type PaymentLinkParams struct {
 
 type PaymentLink struct {
 	APIResource
+	PayLink string `json:"pay_link"`
 }

@@ -19,6 +19,36 @@ type PaymentIntentParams struct {
 
 type PaymentIntent struct {
 	APIResource
+	Header              Head   `json:"header"`
+	TransactionId       string `json:"transactionId"`
+	TransactionType     string `json:"transactionType"`
+	TransactionState    string `json:"transactionState"`
+	HostResponseDate    string `json:"hostResponseDate"`
+	HostResponseMessage string `json:"hostResponseMessage"`
+	OrigTnxId           string `json:"origTnxId"`
+	ClientRequestDate   string `json:"clientRequestDate"`
+	GatewayRequestDate  string `json:"gatewayRequestDate"`
+	GatewayResponseDate string `json:"gatewayResponseDate"`
+	RespCode            string `json:"respCode"`
+	Currency            string `json:"currency"`
+	Stan                string `json:"stan"`
+	ReceiptNumber       string `json:"receiptNumber"`
+	TruncatedPan        string `json:"truncatedPan"`
+	BrandName           string `json:"brandName"`
+	TotalAmount         string `json:"totalAmount"`
+	SalesAmount         string `json:"salesAmount"`
+	Rrn                 string `json:"rrn"`
+	AuthCode            string `json:"authCode"`
+	CardHolderName      string `json:"cardHolderName"`
+	CurrencyCode        string `json:"currencyCode"`
+	GpsLatitude         string `json:"gpsLatitude"`
+	GpsLongitude        string `json:"gpsLongitude"`
+	ServiceAmount       string `json:"serviceAmount"`
+	ServiceRate         string `json:"serviceRate"`
+	GstAmount           string `json:"gstAmount"`
+	GstRate             string `json:"gstRate"`
+	Email               string `json:"email"`
+	Buyer               string `json:"buyer"`
 }
 
 // Creates a PaymentIntentCancelParams object.

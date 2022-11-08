@@ -153,6 +153,10 @@ func (s *BackendImplementation) CallRaw(method, path, mcptid string, params *Par
 	if err != nil {
 		return err
 	}
+	err = json.Unmarshal(apiResponse.RawJSON, v)
+	if err != nil {
+		return err
+	}
 	v.SetLastResponse(apiResponse)
 	return nil
 }
