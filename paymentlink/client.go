@@ -33,6 +33,7 @@ func (c Client) New(params *oxpay.PaymentLinkParams) (*oxpay.PaymentLink, error)
 		c.McpTID,
 		params,
 		paymentlink,
+
 	)
 	paymentlink.PayLink = string(paymentlink.LastResponse.RawJSON)
 	return paymentlink, err
