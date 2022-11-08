@@ -5,7 +5,6 @@ package oxpay
 // Create a pay link ,then return the pay url for browser.
 // todo 创建支付链接参数
 type PaymentLinkParams struct {
-	*Params
 	MCPTID        string `json:"mcptid"`
 	Currency      string `json:"currency"`
 	TotalAmount   string `json:"totalAmount"` //单位分

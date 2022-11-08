@@ -76,8 +76,8 @@ func newAPIResponse(res *http.Response) (*APIResponse, error) {
 }
 
 type Backend interface {
-	Call(method, path, key string, params ParamsContainer, v LastResponseSetter) error
-	CallRaw(method, path, key string, params *Params, v LastResponseSetter) error
+	Call(method, path, key string, params any, v LastResponseSetter) error
+	CallRaw(method, path, key string, params any, v LastResponseSetter) error
 	//CallMultipart(method, path, key, boundary string, body *bytes.Buffer, params *Params, v LastResponseSetter) error
 	//SetMaxNetworkRetries(maxNetworkRetries int64)
 }
@@ -128,13 +128,13 @@ type BackendImplementation struct {
 }
 
 // Call is the Backend.Call implementation for invoking Stripe APIs.
-func (s *BackendImplementation) Call(method, path, mcptid string, params ParamsContainer, v LastResponseSetter) error {
-	// todo 这里可能有个坑
-	return s.CallRaw(method, path, mcptid, params.GetParams(), v)
+func (s *BackendImplementation) Call(method, path, mcptid string, params any, v LastResponseSetter) error {
+
+	return s.CallRaw(method, path, mcptid, params, v)
 }
 
 // CallRaw is the implementation for invoking Stripe APIs internally without a backend.
-func (s *BackendImplementation) CallRaw(method, path, mcptid string, params *Params, v LastResponseSetter) error {
+func (s *BackendImplementation) CallRaw(method, path, mcptid string, params any, v LastResponseSetter) error {
 	data, err := json.Marshal(params)
 	if err != nil {
 		return err
@@ -153,11 +153,12 @@ func (s *BackendImplementation) CallRaw(method, path, mcptid string, params *Par
 	if err != nil {
 		return err
 	}
+	v.SetLastResponse(apiResponse)
 	err = json.Unmarshal(apiResponse.RawJSON, v)
 	if err != nil {
 		return err
 	}
-	v.SetLastResponse(apiResponse)
+
 	return nil
 }
 func (s *BackendImplementation) NewRequest(method, path, mcptid, contentType string, body io.Reader) (*http.Request, error) {
