@@ -5,14 +5,13 @@ import (
 	"net/http"
 )
 
-// Client is used to invoke /payment_links APIs.
 type Client struct {
 	B          oxpay.Backend
 	McpTID     string
 	ApiBackend oxpay.SupportedBackend
 }
 
-// New creates a new payment link.
+// New creates a new payment link,Only support card quick pay.
 func New(params *oxpay.PaymentIntentParams, header *oxpay.Head) (*oxpay.PaymentIntent, error) {
 	return getC().New(params, header)
 }
