@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/li31727/oxpay-go"
-	"github.com/li31727/oxpay-go/paymentlink"
+	"github.com/li31727/oxpay-go/v5"
+	"github.com/li31727/oxpay-go/v5/paymentlink"
 )
 
 const (
