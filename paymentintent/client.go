@@ -1,7 +1,7 @@
 package paymentintent
 
 import (
-	"github.com/li31727/oxpay-go"
+	"github.com/li31727/oxpay-go/v5"
 	"net/http"
 )
 

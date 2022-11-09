@@ -1,7 +1,7 @@
 package paymentlink
 
 import (
-	"github.com/li31727/oxpay-go"
+	"github.com/li31727/oxpay-go/v5"
 	"net/http"
 )
 
@@ -35,7 +35,6 @@ func (c Client) New(params *oxpay.PaymentLinkParams, header *oxpay.Head) (*oxpay
 		c.McpTID,
 		p,
 		paymentlink,
-
 	)
 	paymentlink.PayLink = string(paymentlink.LastResponse.RawJSON)
 	if err != nil && paymentlink.LastResponse.StatusCode != http.StatusOK {
