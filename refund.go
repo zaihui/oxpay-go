@@ -5,7 +5,6 @@ package oxpay
 // Create a pay link ,then return the pay url for browser.
 // todo 退款参数
 type RefundParams struct {
-	Params                `form:"*"`
 	PaymentMethod         string `json:"payment_method"` //card or ewallet
 	Currency              string `json:"currency"`
 	TradeNo               string `json:"tradeNo"`

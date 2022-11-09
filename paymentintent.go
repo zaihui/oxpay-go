@@ -4,24 +4,27 @@ package oxpay
 //
 
 type PaymentIntentParams struct {
-	Params               `form:"*"`
-	PayMethod            string `json:"pay_method"`
-	ID                   string `json:"id"`
-	CardToken            string `json:"cardtoken"` //card quick pay token
-	Currency             string `json:"currency"`
-	TransactionId        string `json:"transactionId"` //OxPay transaction id
-	ReferenceNo          string `json:"referenceNo"`
-	TotalAmount          string `json:"totalAmount"`
-	CustomerEmailAddress string `json:"customerEmailAddress"`
-	CustomerName         string `json:"customerName"`
-	EType                string `json:"eType"` // pay channel e.g:wechat=77771
+	PayMethod     string `json:"pay_method"`
+	ID            string `json:"id"`
+	CardToken     string `json:"cardtoken"` //card quick pay token
+	Currency      string `json:"currency"`
+	TransactionId string `json:"transactionId"` //OxPay transaction id
+	ReferenceNo   string `json:"referenceNo"`
+	TotalAmount   string `json:"totalAmount"`
+	CustomerEmail string `json:"customerEmailAddress"`
+	CustomerName  string `json:"customerName"`
+	EType         string `json:"eType"` // pay channel e.g:wechat=77771
 }
 
 type PaymentIntent struct {
 	APIResource
-	Header              Head   `json:"header"`
+	Header Head              `json:"header"`
+	Data   PaymentIntentData `json:"data"`
+}
+
+type PaymentIntentData struct {
 	TransactionId       string `json:"transactionId"`
-	TransactionType     string `json:"transactionType"`
+	TransactionType     int32  `json:"transactionType"`
 	TransactionState    string `json:"transactionState"`
 	HostResponseDate    string `json:"hostResponseDate"`
 	HostResponseMessage string `json:"hostResponseMessage"`
@@ -36,6 +39,9 @@ type PaymentIntent struct {
 	TruncatedPan        string `json:"truncatedPan"`
 	BrandName           string `json:"brandName"`
 	TotalAmount         string `json:"totalAmount"`
+	TotalPage           int32  `json:"totalPage"`
+	CurrentPage         int32  `json:"currentPage"`
+	CallbackType        int32  `json:"callbackType"`
 	SalesAmount         string `json:"salesAmount"`
 	Rrn                 string `json:"rrn"`
 	AuthCode            string `json:"authCode"`

@@ -9,8 +9,8 @@ import (
 //
 
 type Params struct {
-	Header Head `json:"header"`
-	Data   any  `json:"data"`
+	Header *Head `json:"header"`
+	Data   any   `json:"data"`
 }
 
 // Head is the request common comment.
@@ -33,13 +33,13 @@ type Status struct {
 // should comply. They achieve this by embedding a Params struct and inheriting
 // its implementation of this interface.
 type ParamsContainer interface {
-	GetParams() *Params
+	GetParams() any
 }
 
 // GetParams returns a Params struct (itself). It exists because any structs
 // that embed Params will inherit it, and thus implement the ParamsContainer
 // interface.
-func (p *Params) GetParams() *Params {
+func (p *Params) GetParams() any {
 	return p
 }
 
@@ -52,4 +52,15 @@ func (p *Params) GetParams() *Params {
 // AppendTo implementation.
 type ExtraValues struct {
 	url.Values `form:"-"` // See custom AppendTo implementation
+}
+
+func GetParams(params any, header *Head) any {
+	if header != nil {
+		return &Params{
+			Data:   params,
+			Header: header,
+		}
+	} else {
+		return params
+	}
 }
