@@ -45,3 +45,10 @@ type Refund struct {
 	GstAmount           string `json:"gstAmount"`
 	GstRate             string `json:"gstRate"`
 }
+
+const (
+	RefundTypeWECHAT  string = "77771"
+	RefundTypeALIPAY  string = "77772"
+	RefundTypeGRABPAY string = "77773"
+	RefundTypePAYNOW  string = "77774"
+)
