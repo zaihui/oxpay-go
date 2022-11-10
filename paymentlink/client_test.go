@@ -19,9 +19,6 @@ const (
 
 	// this is front url
 	ReturnUrl = "https://xxdfafd"
-
-	//
-
 )
 
 func TestGetPayLink(t *testing.T) {
